@@ -19,14 +19,16 @@ public class FriendNet {
             } else {
                 List<Friend> newFriend = new ArrayList<>();
                 newFriend.add(f);
-                map.put(user, friendList);
+                map.put(user, newFriend);
             }
         }
         inputFile.close();
-        System.out.println(map);
+        do {
+            char choice = showMenu();
+        } while (true);
     }
 
-    public static void showMenu() {
+    public static char showMenu() {
         Scanner sc = new Scanner(System.in);
         System.out.println("What do you want to do?");
         System.out.println("1) Check if user exists");
@@ -35,6 +37,7 @@ public class FriendNet {
         char choice = sc.next().charAt(0);
         switch (choice) {
             case '1':
+                checkUserExists();
                 // Check if user exists
                 break;
             case '2':
@@ -47,9 +50,22 @@ public class FriendNet {
                 break;
             default:
                 System.out.println("Invalid Choice");
-                showMenu();
         }
-
+        return choice;
     }
 
+    public static void checkUserExists() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("\nEnter a user to check: ");
+        String enteredUser = sc.next();
+        if (map.containsKey(enteredUser)) {
+            System.out.println(enteredUser + " is in this network");
+        } else {
+            System.out.println(enteredUser + " is not in this network");
+        }
+    }
+
+    public static void checkConnection(String user1, String user2) {
+
+    }
 }
