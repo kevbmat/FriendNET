@@ -3,29 +3,25 @@ import java.util.ArrayList;
 import java.io.*;
 
 public class FriendNet {
-
-    private Map<String, String> friendMap = new HashMap<>();
     public static void main(String[] args) throws IOException {
         File file = new File("friends.txt");
         Scanner inputFile = new Scanner(file);
         //create arrayLists and vars
-        ArrayList<String> person1 = new ArrayList<String>();
-        ArrayList<String> person2 = new ArrayList<String>();
-        ArrayList<Integer> friendVal = new ArrayList<Integer>();
-
+        ArrayList<String> users = new ArrayList<String>();
+        ArrayList<String> friends = new ArrayList<String>();
+        ArrayList<Integer> ranks = new ArrayList<Integer>();
         //start input
         while (inputFile.hasNext()){
-            String personFrom = inputFile.next();
-            String personTo = inputFile.next();
-            int val = inputFile.nextInt();
-
-            person1.add(personFrom);
-            person2.add(personTo);
-            friendVal.add(val);
+            String user = inputFile.next();
+            String friend = inputFile.next();
+            int rank = inputFile.nextInt();
+            users.add(user);
+            friends.add(friend);
+            ranks.add(rank);
         }
-        System.out.println(person1);
-        System.out.println(person2);
-        System.out.println(friendVal);
+        System.out.println(users);
+        System.out.println(friends);
+        System.out.println(ranks);
     }
 
     public static void showMenu() {
