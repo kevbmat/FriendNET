@@ -1,3 +1,3 @@
 all:
-	javac KnapsackDynamic.java;
-	java KnapsackDynamic;
+	javac FriendNet.java;
+	java FriendNet;

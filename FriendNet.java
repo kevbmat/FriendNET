@@ -5,32 +5,27 @@ import java.io.*;
 public class FriendNet {
 
     private Map<String, String> friendMap = new HashMap<>();
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         File file = new File("friends.txt");
         Scanner inputFile = new Scanner(file);
-<<<<<<< HEAD
         //create arrayLists and vars
         ArrayList<String> person1 = new ArrayList<String>();
         ArrayList<String> person2 = new ArrayList<String>();
-        ArrayList<Int> friendVal = new ArrayList<Int>();
+        ArrayList<Integer> friendVal = new ArrayList<Integer>();
 
         //start input
         while (inputFile.hasNext()){
             String personFrom = inputFile.next();
             String personTo = inputFile.next();
-            Int val = inputFile.nextInt();
+            int val = inputFile.nextInt();
 
             person1.add(personFrom);
             person2.add(personTo);
             friendVal.add(val);
         }
-
         System.out.println(person1);
-
-
-
-=======
-
+        System.out.println(person2);
+        System.out.println(friendVal);
     }
 
     public static void showMenu() {
@@ -57,7 +52,6 @@ public class FriendNet {
                 showMenu();
         }
 
->>>>>>> 6be59028d9f5385923c3a32ee8ac5d25a0a020a3
     }
 
 }
