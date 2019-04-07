@@ -25,11 +25,11 @@ public class FriendNet {
         System.out.println(map);
         inputFile.close();
         do {
-            char choice = showMenu();
+            showMenu();
         } while (true);
     }
 
-    public static char showMenu() {
+    public static void showMenu() {
         Scanner sc = new Scanner(System.in);
         System.out.println("What do you want to do?");
         System.out.println("1) Check if user exists");
@@ -51,7 +51,6 @@ public class FriendNet {
             default:
                 System.out.println("Invalid Choice");
         }
-        return choice;
     }
 
     public static void checkUserExists() {
