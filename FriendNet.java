@@ -1,3 +1,27 @@
+// Kevin Mattappally
+// Davis Fairchild
+// Ryan Hays
+
+// How we are going to implement the best freind chain
+//  1. We will implement the best friend chain by utilizing the 
+//      branch and bound method. For this, we would find the lower bound
+//      (in terms of the path) for each node in the tree, just like we did
+//      for the assignment problem
+// Here are our two killer features:
+//  1. Finding Mutual Friends between two users
+//      a. To find the mutual friends, we would be using
+//         the brute force algorithm (or sorting then binary search)
+//  2. Finding the most popular / best friend
+//      a. To find the most popular friend, we would have to iterate through
+//      each friend's list and have a count for each friend. At the end, we take 
+//      the friend with the highest count. We can also find the friend with the highest
+//      average friend rank, by taking the addition of the ranks and then dividing by the count.
+//  Honorable Mention Ideas:
+//      a. We would be adding a gender attribute to each user
+//         then we could sort the user's by what gender they are.
+//      b. We can also add a relationship status to the user
+//      c. Both of these ideas would result in making a seperate User object.
+
 import java.util.*;
 import java.util.ArrayList;
 import java.io.*;
