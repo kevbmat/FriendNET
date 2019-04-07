@@ -22,6 +22,7 @@ public class FriendNet {
                 map.put(user, newFriend);
             }
         }
+        System.out.println(map);
         inputFile.close();
         do {
             char choice = showMenu();
@@ -38,10 +39,9 @@ public class FriendNet {
         switch (choice) {
             case '1':
                 checkUserExists();
-                // Check if user exists
                 break;
             case '2':
-                // Check connection between users
+                checkConnection();
                 break;
             case '3':
                 // Quit
@@ -59,13 +59,29 @@ public class FriendNet {
         System.out.print("\nEnter a user to check: ");
         String enteredUser = sc.next();
         if (map.containsKey(enteredUser)) {
-            System.out.println(enteredUser + " is in this network");
+            System.out.println(enteredUser + " is in this network\n");
         } else {
-            System.out.println(enteredUser + " is not in this network");
+            System.out.println(enteredUser + " is not in this network\n");
         }
     }
 
-    public static void checkConnection(String user1, String user2) {
-
+    public static void checkConnection() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("\nEnter the first user: ");
+        String firstUser = sc.next();
+        System.out.print("Enter the second user: ");
+        String secondUser = sc.next();
+        if (map.containsKey(firstUser)) {
+            List<Friend> firstUserFriends = map.get(firstUser);
+            for (int i = 0; i < firstUserFriends.size(); i++) {
+                if (firstUserFriends.get(i).getName().equals(secondUser)) {
+                    System.out.println("The weight of " + firstUser + " to " + secondUser + " = " + firstUserFriends.get(i).getRank());
+                    return;
+                }
+            }
+            System.out.println(secondUser + " is not a friend of " + firstUser + "\n");
+        } else {
+            System.out.println(firstUser + " is not in this network" + "\n");
+        }
     }
 }
