@@ -6,7 +6,8 @@
 //  1. We will implement the best friend chain by utilizing the 
 //      branch and bound method. For this, we would find the lower bound
 //      (in terms of the path) for each node in the tree, just like we did
-//      for the assignment problem
+//      for the assignment problem. This would use finding the lower bound 
+//      unfriendlinest ranking, then branching based on the lower bound (just like shown in class)
 // Here are our two killer features:
 //  1. Finding Mutual Friends between two users
 //      a. To find the mutual friends, we would be using
