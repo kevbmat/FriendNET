@@ -4,11 +4,12 @@
 
 // How we are going to implement the best freind chain
 //  1. We will implement the best friend chain by utilizing the 
-//      branch and bound method. For this, we would find the lower bound
+//      branch and bound method. Specifically we will be using Dijkstra's algorithm
+//      For this, we would find the lower bound
 //      (in terms of the path) for each node in the tree, just like we did
 //      for the assignment problem. This would use finding the lower bound 
 //      unfriendlinest ranking, then branching based on the lower bound (just like shown in class)
-// Here are our two killer features:
+//      Here are our two killer features:
 //  1. Finding Mutual Friends between two users
 //      a. To find the mutual friends, we would be using
 //         the brute force algorithm (or sorting then binary search)
@@ -60,6 +61,9 @@ public class FriendNet {
         System.out.println("1) Check if user exists");
         System.out.println("2) Check connection between users");
         System.out.println("3) Quit");
+        System.out.println("4) Best Friend Chain");
+        System.out.println("5) Find Mutual Friends");
+        System.out.println("6) Find Best Quality Methods");
         char choice = sc.next().charAt(0);
         switch (choice) {
             case '1':
@@ -73,9 +77,19 @@ public class FriendNet {
                 System.out.println("Exiting...");
                 System.exit(0);
                 break;
+            case '4':
+                bestFriendChain();
+                break;
+            case '5':
+                mutualFriends();
+                break;
+            case '6':
+                bestQualityFriend();
+                break;
             default:
                 System.out.println("Invalid Choice");
         }
+        sc.close();
     }
 
     public static void checkUserExists() {
@@ -87,6 +101,7 @@ public class FriendNet {
         } else {
             System.out.println(enteredUser + " is not in this network\n");
         }
+        sc.close();
     }
 
     public static void checkConnection() {
@@ -107,5 +122,18 @@ public class FriendNet {
         } else {
             System.out.println(firstUser + " is not in this network" + "\n");
         }
+        sc.close();
+    }
+
+    public static void bestFriendChain() {
+
+    }
+
+    public static void mutualFriends() {
+        
+    }
+
+    public static void bestQualityFriend() {
+        
     }
 }
