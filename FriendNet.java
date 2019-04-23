@@ -32,7 +32,7 @@ public class FriendNet {
 
     public static void showMenu() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("What do you want to do?");
+        System.out.println("\nWhat do you want to do?");
         System.out.println("1) Check if user exists");
         System.out.println("2) Check connection between users");
         System.out.println("3) Quit");
@@ -99,12 +99,14 @@ public class FriendNet {
 
     public static void bestFriendChain() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter the first user: ");
+        System.out.print("\nEnter the first user: ");
         String firstUser = sc.next();
         System.out.print("Enter the second user: ");
         String secondUser = sc.next();
         System.out.println("Now calculating the best friend chain...");
-        // here we start using Dijkstra's Algorithm
+        // starting main portion of algorithm
+        // based of Dikstra's algorithm
+        // uses ArrayLists rather than PriorityQueue
         ArrayList<String> nodes = new ArrayList<>();
         ArrayList<Integer> distances = new ArrayList<>();
         ArrayList<String> prevs = new ArrayList<>();
@@ -119,13 +121,9 @@ public class FriendNet {
                 distances.add(Integer.MAX_VALUE);
             }
         }
-        System.out.println();
-        System.out.println(nodes);
-        System.out.println(distances);
-        System.out.println(prevs);
-        System.out.println(visited);
-        System.out.println();
-        for (int i = 0; i < /*nodes.size()*/ 1; i++) {
+        // initial contents of lists
+        printLists("Initial", nodes, distances, prevs, visited);
+        for (int i = 0; i < nodes.size(); i++) {
             // calculate min distance index
             int minIndex = 0;
             for (int j = 1; j < nodes.size(); j++) {
@@ -134,33 +132,43 @@ public class FriendNet {
                 }
             }
             visited.set(minIndex, true);
-            System.out.println("min index = " + minIndex);
-            // Now for each adjacent vertex calculate the min index
+            // for each adjacent vertex calculate min distance
             int numFriends = map.get(nodes.get(minIndex)).size();
-            // System.out.println(nodes.get(minIndex));
-            // System.out.println(numFriends);
             for (int j = 0; j < numFriends; j++) {
                 String currentFriend = map.get(nodes.get(minIndex)).get(j).getName();
                 int unfriendlinessRank = 10 - map.get(nodes.get(minIndex)).get(j).getRank();
-                // now see which index that friend is located at
+                // see which index that friend is located at
                 for (int k = 0; k < nodes.size(); k++) {
-                    if (nodes.get(k) == currentFriend) {
+                    if (nodes.get(k).equals(currentFriend)) {
                         // update current min distance
                         if (distances.get(k) > (unfriendlinessRank + distances.get(minIndex))) {
-                            // we found a faster route
+                            // found a faster route
                             distances.set(k, unfriendlinessRank + distances.get(minIndex));
                         }
                     }
                 }
-
             }
-            System.out.println();
-            System.out.println(nodes);
-            System.out.println(distances);
-            System.out.println(prevs);
-            System.out.println(visited);
-            System.out.println();
         }
+        // final contents of lists
+        printLists("Final", nodes, distances, prevs, visited);
+        // showing the user the total unfriendliness value
+        int unfrendlinestValue = distances.get(nodes.indexOf(secondUser));
+        System.out.printf("Total Unfrendlinest Value = %d\n", unfrendlinestValue);
+        // show best friend chain
+        if (unfrendlinestValue > 2000000000) {
+            System.out.println("Unable to Obtain Friend Chain :(");
+        } else {
+            // friend chain is possible
+        }
+    }
+
+    // prints out the lists in a pretty fashion
+    public static void printLists(String time, ArrayList a, ArrayList b, ArrayList c, ArrayList d) {
+        System.out.println("\n" + time + " list contents");
+        System.out.println(a);
+        System.out.println(b);
+        System.out.println(c);
+        System.out.println(d + "\n");
     }
 
     public static void mutualFriends() {
