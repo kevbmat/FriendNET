@@ -1,11 +1,12 @@
 import java.util.*;
 import java.util.ArrayList;
+import java.util.PriorityQueue;
 import java.io.*;
 
 public class FriendNet {
     private static Map<String, List<Friend>> map = new HashMap<>();
     public static void main(String[] args) throws IOException {
-        File file = new File("Friends.txt");
+        File file = new File("Friends2.txt");
         Scanner inputFile = new Scanner(file);
         while (inputFile.hasNext()){
             String user = inputFile.next();
@@ -104,22 +105,62 @@ public class FriendNet {
         String secondUser = sc.next();
         System.out.println("Now calculating the best friend chain...");
         // here we start using Dijkstra's Algorithm
-        // HashSet<Strings> vertices = new HashSet<>();
         ArrayList<String> nodes = new ArrayList<>();
         ArrayList<Integer> distances = new ArrayList<>();
         ArrayList<String> prevs = new ArrayList<>();
+        ArrayList<Boolean> visited = new ArrayList<>();
         for (String u : map.keySet()) {
             nodes.add(u);
             prevs.add("_");
+            visited.add(false);
             if (u.equals(firstUser)) {
                 distances.add(0);
             } else {
                 distances.add(Integer.MAX_VALUE);
             }
         }
+        System.out.println();
         System.out.println(nodes);
         System.out.println(distances);
         System.out.println(prevs);
+        System.out.println(visited);
+        System.out.println();
+        for (int i = 0; i < /*nodes.size()*/ 1; i++) {
+            // calculate min distance index
+            int minIndex = 0;
+            for (int j = 1; j < nodes.size(); j++) {
+                if (distances.get(j) < distances.get(minIndex) && visited.get(j) == false) {
+                    minIndex = j;
+                }
+            }
+            visited.set(minIndex, true);
+            System.out.println("min index = " + minIndex);
+            // Now for each adjacent vertex calculate the min index
+            int numFriends = map.get(nodes.get(minIndex)).size();
+            // System.out.println(nodes.get(minIndex));
+            // System.out.println(numFriends);
+            for (int j = 0; j < numFriends; j++) {
+                String currentFriend = map.get(nodes.get(minIndex)).get(j).getName();
+                int unfriendlinessRank = 10 - map.get(nodes.get(minIndex)).get(j).getRank();
+                // now see which index that friend is located at
+                for (int k = 0; k < nodes.size(); k++) {
+                    if (nodes.get(k) == currentFriend) {
+                        // update current min distance
+                        if (distances.get(k) > (unfriendlinessRank + distances.get(minIndex))) {
+                            // we found a faster route
+                            distances.set(k, unfriendlinessRank + distances.get(minIndex));
+                        }
+                    }
+                }
+
+            }
+            System.out.println();
+            System.out.println(nodes);
+            System.out.println(distances);
+            System.out.println(prevs);
+            System.out.println(visited);
+            System.out.println();
+        }
     }
 
     public static void mutualFriends() {
