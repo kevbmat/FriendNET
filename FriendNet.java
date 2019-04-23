@@ -144,6 +144,7 @@ public class FriendNet {
                         if (distances.get(k) > (unfriendlinessRank + distances.get(minIndex))) {
                             // found a faster route
                             distances.set(k, unfriendlinessRank + distances.get(minIndex));
+                            prevs.set(k, nodes.get(minIndex));
                         }
                     }
                 }
@@ -152,13 +153,23 @@ public class FriendNet {
         // final contents of lists
         printLists("Final", nodes, distances, prevs, visited);
         // showing the user the total unfriendliness value
-        int unfrendlinestValue = distances.get(nodes.indexOf(secondUser));
-        System.out.printf("Total Unfrendlinest Value = %d\n", unfrendlinestValue);
+        int unfriendlinestValue = distances.get(nodes.indexOf(secondUser));
         // show best friend chain
-        if (unfrendlinestValue > 2000000000) {
-            System.out.println("Unable to Obtain Friend Chain :(");
+        if (Math.abs(unfriendlinestValue) >= 2000000) {
+            System.out.println("\nUnable to Obtain Friend Chain :(");
         } else {
             // friend chain is possible
+            System.out.printf("\nTotal Unfriendlinest Value = %d\n", unfriendlinestValue);
+            // representing the chain in an arraylist
+            ArrayList<String> chain = new ArrayList<>();
+            chain.add(nodes.get(distances.indexOf(unfriendlinestValue)));
+            System.out.println(chain);
+            /*
+            while (!(prevs.get(nodes.indexOf(chain.get(0))).equals("_"))) {
+                chain.add(0, prevs.get(nodes.indexOf(chain.get(0))));
+            }*/
+            System.out.print("Best Friend Chain: ");
+            System.out.println(chain);
         }
     }
 
@@ -168,7 +179,7 @@ public class FriendNet {
         System.out.println(a);
         System.out.println(b);
         System.out.println(c);
-        System.out.println(d + "\n");
+        System.out.println(d);
     }
 
     public static void mutualFriends() {
