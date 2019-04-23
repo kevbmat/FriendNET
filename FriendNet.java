@@ -126,6 +126,14 @@ public class FriendNet {
     }
 
     public static void bestFriendChain() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the first user: ");
+        String firstUser = sc.next();
+        System.out.print("Enter the second user: ");
+        String secondUser = sc.next();
+        System.out.println("Now calculating the best friend chain...");
+        // here we start using Dijkstra's Algorithm
+        int dv = Integer.MAX_VALUE;
 
     }
 
@@ -134,6 +142,6 @@ public class FriendNet {
     }
 
     public static void bestQualityFriend() {
-        
+
     }
 }
