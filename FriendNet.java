@@ -163,13 +163,16 @@ public class FriendNet {
             // representing the chain in an arraylist
             ArrayList<String> chain = new ArrayList<>();
             chain.add(nodes.get(distances.indexOf(unfriendlinestValue)));
-            System.out.println(chain);
-            /*
             while (!(prevs.get(nodes.indexOf(chain.get(0))).equals("_"))) {
                 chain.add(0, prevs.get(nodes.indexOf(chain.get(0))));
-            }*/
+            }
+            // printing out the best friend chain
             System.out.print("Best Friend Chain: ");
-            System.out.println(chain);
+            System.out.print(chain.get(0));
+            for (int i = 1; i < chain.size(); i++) {
+                System.out.print(" --> " + chain.get(i));
+            }
+            System.out.println();
         }
     }
 
