@@ -1,29 +1,3 @@
-// Kevin Mattappally
-// Davis Fairchild
-// Ryan Hays
-
-// How we are going to implement the best freind chain
-//  1. We will implement the best friend chain by utilizing the 
-//      branch and bound method. Specifically we will be using Dijkstra's algorithm
-//      For this, we would find the lower bound
-//      (in terms of the path) for each node in the tree, just like we did
-//      for the assignment problem. This would use finding the lower bound 
-//      unfriendlinest ranking, then branching based on the lower bound (just like shown in class)
-//      Here are our two killer features:
-//  1. Finding Mutual Friends between two users
-//      a. To find the mutual friends, we would be using
-//         the brute force algorithm (or sorting then binary search)
-//  2. Finding the most popular / best friend
-//      a. To find the most popular friend, we would have to iterate through
-//      each friend's list and have a count for each friend. At the end, we take 
-//      the friend with the highest count. We can also find the friend with the highest
-//      average friend rank, by taking the addition of the ranks and then dividing by the count.
-//  Honorable Mention Ideas:
-//      a. We would be adding a gender attribute to each user
-//         then we could sort the user's by what gender they are.
-//      b. We can also add a relationship status to the user
-//      c. Both of these ideas would result in making a seperate User object.
-
 import java.util.*;
 import java.util.ArrayList;
 import java.io.*;
@@ -31,7 +5,7 @@ import java.io.*;
 public class FriendNet {
     private static Map<String, List<Friend>> map = new HashMap<>();
     public static void main(String[] args) throws IOException {
-        File file = new File("friends.txt");
+        File file = new File("Friends.txt");
         Scanner inputFile = new Scanner(file);
         while (inputFile.hasNext()){
             String user = inputFile.next();
@@ -89,7 +63,6 @@ public class FriendNet {
             default:
                 System.out.println("Invalid Choice");
         }
-        sc.close();
     }
 
     public static void checkUserExists() {
@@ -101,7 +74,6 @@ public class FriendNet {
         } else {
             System.out.println(enteredUser + " is not in this network\n");
         }
-        sc.close();
     }
 
     public static void checkConnection() {
@@ -122,7 +94,6 @@ public class FriendNet {
         } else {
             System.out.println(firstUser + " is not in this network" + "\n");
         }
-        sc.close();
     }
 
     public static void bestFriendChain() {
@@ -133,8 +104,22 @@ public class FriendNet {
         String secondUser = sc.next();
         System.out.println("Now calculating the best friend chain...");
         // here we start using Dijkstra's Algorithm
-        int dv = Integer.MAX_VALUE;
-
+        // HashSet<Strings> vertices = new HashSet<>();
+        ArrayList<String> nodes = new ArrayList<>();
+        ArrayList<Integer> distances = new ArrayList<>();
+        ArrayList<String> prevs = new ArrayList<>();
+        for (String u : map.keySet()) {
+            nodes.add(u);
+            prevs.add("_");
+            if (u.equals(firstUser)) {
+                distances.add(0);
+            } else {
+                distances.add(Integer.MAX_VALUE);
+            }
+        }
+        System.out.println(nodes);
+        System.out.println(distances);
+        System.out.println(prevs);
     }
 
     public static void mutualFriends() {
