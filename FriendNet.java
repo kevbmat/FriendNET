@@ -2,6 +2,7 @@ import java.util.*;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 import java.io.*;
+import java.lang.*;
 
 public class FriendNet {
     private static Map<String, List<Friend>> map = new HashMap<>();
@@ -155,7 +156,7 @@ public class FriendNet {
         // showing the user the total unfriendliness value
         int unfriendlinestValue = distances.get(nodes.indexOf(secondUser));
         // show best friend chain
-        if (Math.abs(unfriendlinestValue) >= 2000000) {
+        if (unfriendlinestValue >= 2000000 || unfriendlinestValue <= -2000000) {
             System.out.println("\nUnable to Obtain Friend Chain :(");
         } else {
             // friend chain is possible
