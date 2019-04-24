@@ -187,10 +187,23 @@ public class FriendNet {
     }
 
     public static void mutualFriends() {
-        
+
     }
 
     public static void bestQualityFriend() {
+      System.out.println("\n");
+      System.out.println(map.keySet());
+      Map.Entry<String, List<Friend>> entry = map.entrySet().iterator().next();
+      String key= entry.getKey();
+      //String entryName = entry.getName();
+      //int entryRank = entry.getRank();
+      System.out.println(key);
+      System.out.println("");
+      for (String keys : map.keySet())
+      {
+         System.out.println(keys + ":"+ map.get(keys));
+      }
+      System.out.println("\n");
 
     }
 }
