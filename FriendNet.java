@@ -194,6 +194,14 @@ public class FriendNet {
         System.out.println("\n");
 
         ArrayList<String> friendsList = new ArrayList<String>();
+        ArrayList<String> usersList = new ArrayList<String>();
+        ArrayList<String> maxFriendshipList = new ArrayList<String>();
+        int friendCounter = 0;
+        int runningFriendshipTotal = 0;
+        double averageFriendshipLevel = 0;
+        double valueOfBestFriend = 0;
+        int indexOfBestFriend = -1;
+
 
         System.out.println("");
         System.out.println("Users: Friends and Ranks");
@@ -203,17 +211,91 @@ public class FriendNet {
             System.out.println(keys + ":"+ map.get(keys));
         }
         System.out.println("\n");
-        System.out.println(map.keySet());
+        //System.out.println(map.keySet());
         for (String keys : map.keySet())
         {
             String tempString = map.get(keys).toString();
-            System.out.println(map.get(keys).toString());
-            tempString = tempString.replaceAll("\\D", "");
+            //System.out.println(tempString);
+            //tempString = tempString.replaceAll("\\D", "");
             friendsList.add(tempString);
+            usersList.add(keys);
         }
 
-        System.out.println(friendsList);
-        System.out.println(friendsList.get(0));
+        //loop iterates over every key in the map (users with associate friend lists)
+        for (int i = 0; i < usersList.size(); i++)
+        {
+            String currentUser = usersList.get(i);
+            System.out.println(currentUser);
+            friendCounter = 0;
+            runningFriendshipTotal = 0;
+            averageFriendshipLevel = 0;
+
+            //iterates over the vlaues in the map (friends list with ranks)
+            for (int j = 0; j < friendsList.size(); j++)
+            {
+                //if index i is the same as index j, this is the user's own list of friends
+                //exclude the list of the user's own friends
+                if (j != i)
+                {
+                    //iterates over each character of the values (friends and ranks)
+                    //System.out.println(friendsList.get(j));
+                    boolean isFriend = friendsList.get(j).indexOf(currentUser) != -1? true: false;
+                    //System.out.println(isFriend);
+                    if (isFriend)
+                    {
+                        int firstIndexOfName = friendsList.get(j).indexOf(currentUser);
+                        int lengthOfName = currentUser.length();
+                        friendCounter++;
+
+                        //System.out.println(firstIndexOfName);
+                        //System.out.println("Name lenght: " + lengthOfName);
+                        int friendshipRank = Character.getNumericValue(friendsList.get(j).charAt(firstIndexOfName + lengthOfName + 2));
+                        //System.out.println(friendshipRank);
+                        //System.out.print("Friendshiplevel: ");
+                        if (friendshipRank == 1)
+                        {
+                            if(friendsList.get(j).charAt(firstIndexOfName + lengthOfName + 3) == '0')
+                            {
+                              friendshipRank = 10;
+                              //System.out.println(friendshipRank);
+                            }
+                            else
+                            {
+                              //System.out.println(friendshipRank);
+                            }
+                        }
+                        else
+                        {
+                            //System.out.println(friendshipRank);
+                        }
+
+                        //System.out.println(friendsList.get(j).charAt(firstIndexOfName + lengthOfName + 2));
+                        //System.out.print(friendsList.get(j).charAt(firstIndexOfName + lengthOfName + 3));
+                        runningFriendshipTotal += friendshipRank;
+
+                    }
+
+                }
+            }
+            System.out.println("Number of friends: " + friendCounter);
+            System.out.println("Total friendshiplevel: " + runningFriendshipTotal);
+            averageFriendshipLevel = runningFriendshipTotal / (double) friendCounter;
+            System.out.println("Average friendship total: " + averageFriendshipLevel);
+            if (averageFriendshipLevel > valueOfBestFriend)
+            {
+              indexOfBestFriend = i;
+              valueOfBestFriend = averageFriendshipLevel;
+            }
+            System.out.println("");
+        }
+        System.out.println("");
+        System.out.println("The index of the best quality friend is: " + indexOfBestFriend);
+        System.out.println("The best quality friend is: " + usersList.get(indexOfBestFriend) + " with a level of: " + valueOfBestFriend);
+
+        // System.out.println(usersList.get(0));
+        // System.out.println(friendsList.get(0));
+        // System.out.println(friendsList.get(0).charAt(0));
+        // System.out.println(friendsList.get(0).length());
         System.out.println("\n");
 
     }
