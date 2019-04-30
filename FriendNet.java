@@ -191,7 +191,6 @@ public class FriendNet {
     }
 
     public static void bestQualityFriend() {
-        System.out.println("\n");
 
         ArrayList<String> friendsList = new ArrayList<String>();
         ArrayList<String> usersList = new ArrayList<String>();
@@ -210,7 +209,7 @@ public class FriendNet {
 
             System.out.println(keys + ":"+ map.get(keys));
         }
-        System.out.println("\n");
+        //System.out.println("\n");
         //System.out.println(map.keySet());
         for (String keys : map.keySet())
         {
@@ -225,7 +224,7 @@ public class FriendNet {
         for (int i = 0; i < usersList.size(); i++)
         {
             String currentUser = usersList.get(i);
-            System.out.println(currentUser);
+            //System.out.println(currentUser);
             friendCounter = 0;
             runningFriendshipTotal = 0;
             averageFriendshipLevel = 0;
@@ -261,11 +260,13 @@ public class FriendNet {
                             }
                             else
                             {
+                              friendshipRank = 1;
                               //System.out.println(friendshipRank);
                             }
                         }
                         else
                         {
+
                             //System.out.println(friendshipRank);
                         }
 
@@ -277,26 +278,24 @@ public class FriendNet {
 
                 }
             }
-            System.out.println("Number of friends: " + friendCounter);
-            System.out.println("Total friendshiplevel: " + runningFriendshipTotal);
+            //System.out.println("Number of friends: " + friendCounter);
+            //System.out.println("Total friendshiplevel: " + runningFriendshipTotal);
             averageFriendshipLevel = runningFriendshipTotal / (double) friendCounter;
-            System.out.println("Average friendship total: " + averageFriendshipLevel);
+            //System.out.println("Average friendship total: " + averageFriendshipLevel);
             if (averageFriendshipLevel > valueOfBestFriend)
             {
               indexOfBestFriend = i;
               valueOfBestFriend = averageFriendshipLevel;
             }
-            System.out.println("");
         }
         System.out.println("");
-        System.out.println("The index of the best quality friend is: " + indexOfBestFriend);
-        System.out.println("The best quality friend is: " + usersList.get(indexOfBestFriend) + " with a level of: " + valueOfBestFriend);
+        //System.out.println("The index of the best quality friend is: " + indexOfBestFriend);
+        System.out.println("The user who is the best quality friend is " + usersList.get(indexOfBestFriend) + " with a level of: " + valueOfBestFriend);
 
         // System.out.println(usersList.get(0));
         // System.out.println(friendsList.get(0));
         // System.out.println(friendsList.get(0).charAt(0));
         // System.out.println(friendsList.get(0).length());
-        System.out.println("\n");
 
     }
 }
