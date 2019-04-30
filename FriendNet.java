@@ -191,19 +191,30 @@ public class FriendNet {
     }
 
     public static void bestQualityFriend() {
-      System.out.println("\n");
-      System.out.println(map.keySet());
-      Map.Entry<String, List<Friend>> entry = map.entrySet().iterator().next();
-      String key= entry.getKey();
-      //String entryName = entry.getName();
-      //int entryRank = entry.getRank();
-      System.out.println(key);
-      System.out.println("");
-      for (String keys : map.keySet())
-      {
-         System.out.println(keys + ":"+ map.get(keys));
-      }
-      System.out.println("\n");
+        System.out.println("\n");
+
+        ArrayList<String> friendsList = new ArrayList<String>();
+
+        System.out.println("");
+        System.out.println("Users: Friends and Ranks");
+        for (String keys : map.keySet())
+        {
+
+            System.out.println(keys + ":"+ map.get(keys));
+        }
+        System.out.println("\n");
+        System.out.println(map.keySet());
+        for (String keys : map.keySet())
+        {
+            String tempString = map.get(keys).toString();
+            System.out.println(map.get(keys).toString());
+            tempString = tempString.replaceAll("\\D", "");
+            friendsList.add(tempString);
+        }
+
+        System.out.println(friendsList);
+        System.out.println(friendsList.get(0));
+        System.out.println("\n");
 
     }
 }
