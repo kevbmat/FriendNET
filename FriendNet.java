@@ -1,5 +1,3 @@
-package friendnet;
-
 import java.util.*;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
@@ -9,7 +7,7 @@ import java.lang.*;
 public class FriendNet {
     private static Map<String, List<Friend>> map = new HashMap<>();
     public static void main(String[] args) throws IOException {
-        File file = new File("Friends.txt");
+        File file = new File("Friends2.txt");
         Scanner inputFile = new Scanner(file);
         while (inputFile.hasNext()){
             String user = inputFile.next();
@@ -132,7 +130,7 @@ public class FriendNet {
         for (int i = 0; i < nodes.size(); i++) {
             // calculate min distance index
             int minIndex = 0;
-            for (int j = 0; j < nodes.size(); j++) {
+            for (int j = 1; j < nodes.size(); j++) {
                 if (distances.get(j) < distances.get(minIndex) && visited.get(j) == false) {
                     minIndex = j;
                 }

@@ -4,3 +4,9 @@ Roland Lilith 5
 Lilith Roland 8
 Scooter Daisy 9
 Daisy Scooter 1
+Ellie Jill 4
+Ellie Jack 7
+Jack Ellie 4
+Roland Jack 8
+Lilith Jack 9
+Lilith Daisy 1
