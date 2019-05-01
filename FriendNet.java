@@ -1,3 +1,5 @@
+package friendnet;
+
 import java.util.*;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
@@ -7,7 +9,7 @@ import java.lang.*;
 public class FriendNet {
     private static Map<String, List<Friend>> map = new HashMap<>();
     public static void main(String[] args) throws IOException {
-        File file = new File("Friends2.txt");
+        File file = new File("Friends.txt");
         Scanner inputFile = new Scanner(file);
         while (inputFile.hasNext()){
             String user = inputFile.next();
@@ -107,7 +109,7 @@ public class FriendNet {
         String firstUser = sc.next();
         System.out.print("Enter the second user: ");
         String secondUser = sc.next();
-        System.out.println("Now calculating the best friend chain...");
+        System.out.println("Now calculating the best friend chain:");
         // starting main portion of algorithm
         // based of Dikstra's algorithm
         // uses ArrayLists rather than PriorityQueue
@@ -190,7 +192,45 @@ public class FriendNet {
     }
 
     public static void mutualFriends() {
+        //get user1's friends, check user 2's friends, find commonalities
+        ArrayList<String> mutualFriends = new ArrayList<String>();
+        
+        //establish people to search between
+        Scanner sc = new Scanner(System.in);
+        System.out.print("\nEnter the first user: ");
+            String firstUser = sc.next();
+        System.out.print("Enter the second user: ");
+            String secondUser = sc.next();
+        
+        //search through both friends lists getting common ones
+        if (map.containsKey(firstUser)) {
+            if (map.containsKey(secondUser)) {
+                List<Friend> firstUserFriends = map.get(firstUser); //get user1 friends
+                List<Friend> secondUserFriends = map.get(secondUser); //get user2 friends
+                for (int i = 0; i < firstUserFriends.size(); i++) {
+                    for (int j = 0; j < secondUserFriends.size(); j++){
+                        if (firstUserFriends.get(i).getName().equals(secondUserFriends.get(j).getName())) { //check if equal
+                            String tempString = firstUserFriends.get(i).getName(); //if equal make a tempString
+                            mutualFriends.add(tempString);                                              //add that tempString to an array list
+                        }
+                    }
+                }
 
+                if (!mutualFriends.isEmpty()){
+                    System.out.println("These Mutual Friends were found:"); //print array list
+                    System.out.println(mutualFriends);
+                }
+
+                else {
+                    System.out.println("No mutual friends were found."); //no mutual friends found
+                }
+            }
+            else {
+                System.out.println(secondUser + " is not in this network" + "\n");
+            }
+        } else {
+            System.out.println(firstUser + " is not in this network" + "\n");
+        }
     }
 
     public static void bestQualityFriend() {
@@ -302,3 +342,4 @@ public class FriendNet {
 
     }
 }
+
