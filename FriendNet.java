@@ -23,6 +23,9 @@ public class FriendNet {
                 newFriend.add(f);
                 map.put(user, newFriend);
             }
+            if (!map.containsKey(friend)) {
+                map.put(friend, new ArrayList<>());
+            }
         }
         System.out.println(map);
         inputFile.close();
