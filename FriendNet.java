@@ -7,7 +7,7 @@ import java.lang.*;
 public class FriendNet {
     private static Map<String, List<Friend>> map = new HashMap<>();
     public static void main(String[] args) throws IOException {
-        File file = new File("Friends2.txt");
+        File file = new File("Friends.txt");
         Scanner inputFile = new Scanner(file);
         while (inputFile.hasNext()){
             String user = inputFile.next();

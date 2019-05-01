@@ -18,8 +18,8 @@ Lilith Scooter 7
 Lilith Mordecai 7
 Lilith Brick 7
 Mordecai Lilith 7
-Mordecai Roland 8
-Mordecai Brick 8
+Mordecai Roland 7
+Mordecai Brick 9
 Brick Mordecai 8
 Brick Lilith 7
 Brick Roland 7
