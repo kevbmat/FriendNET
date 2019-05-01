@@ -42,7 +42,7 @@ public class FriendNet {
         System.out.println("3) Quit");
         System.out.println("4) Best Friend Chain");
         System.out.println("5) Find Mutual Friends");
-        System.out.println("6) Find Best Quality Methods");
+        System.out.println("6) Find Best Quality Friend");
         char choice = sc.next().charAt(0);
         switch (choice) {
             case '1':
@@ -130,7 +130,7 @@ public class FriendNet {
         for (int i = 0; i < nodes.size(); i++) {
             // calculate min distance index
             int minIndex = 0;
-            for (int j = 1; j < nodes.size(); j++) {
+            for (int j = 0; j < nodes.size(); j++) {
                 if (distances.get(j) < distances.get(minIndex) && visited.get(j) == false) {
                     minIndex = j;
                 }
